@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Mano</string>
+    <string name="add_entry_button">Add Entry</string>
+    <string name="add_entry_title">Title:</string>
+    <string name="add_entry_body">Body:</string>
+    <string name="add_entry_time">Time:</string>
+    <string name="add_entry_create">Create</string>
+    <string name="add_entry_date">Date:</string>
+    <string name="add_entry_date_text">%1$d/%2$d/%3$d</string>
+    <string name="add_entry_time_text">%1$d:%2$s %3$s</string>
+    <string name="default_text">Default Text</string>
+    <string name="calendar_button">Calendar</string>
+    <string name="default_title">Title</string>
+    <string name="default_body">Body</string>
+    <string name="save_entry_button">Save</string>
+</resources>
