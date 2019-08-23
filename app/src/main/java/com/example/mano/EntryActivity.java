@@ -8,14 +8,26 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ViewSwitcher;
 
+import java.time.LocalDateTime;
+
 public class EntryActivity extends AppCompatActivity {
     private static final String TAG = "EntryActivity";
+    private DatePickerFragment datePicker;
+    private TimePickerFragment timePicker;
     private int id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_entry);
+
+        datePicker = new DatePickerFragment();
+        timePicker = new TimePickerFragment();
+
+        datePicker.bindTextView(findViewById(R.id.dateTextView), getSupportFragmentManager(),
+                "datePicker");
+        timePicker.bindTextView(findViewById(R.id.timeTextView), getSupportFragmentManager(),
+                "timePicker");
 
         id = getIntent().getIntExtra("id", 0);
         ViewModelProviders.of(this).get(EntryViewModel.class)
@@ -59,8 +71,8 @@ public class EntryActivity extends AppCompatActivity {
         vw.getCurrentView().requestFocus();
     }
     public void onSaveButtonClick(View view) {
-       /*ViewModelProviders.of(this).get(EntryViewModel.class).update(id,
+       ViewModelProviders.of(this).get(EntryViewModel.class).update(id,
                 getViewText(R.id.titleText), getViewText(R.id.bodyText),
-                getViewText(R.id.dateTimeText));*/
+                LocalDateTime.of(datePicker.getDate(), timePicker.getTime()));
     }
 }

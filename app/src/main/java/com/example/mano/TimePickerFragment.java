@@ -18,13 +18,12 @@ import java.util.Calendar;
 public class TimePickerFragment extends PickerFragment
         implements TimePickerDialog.OnTimeSetListener {
     private TimePickerDialog dialog;
-    private LocalTime time;
+    private LocalTime time = LocalTime.now();
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         toggleHidden();
         if (dialog == null) {
-            time = LocalTime.now();
             dialog = new TimePickerDialog(getActivity(), this, time.getHour(),
                     time.getMinute(), DateFormat.is24HourFormat(getActivity()));
         }

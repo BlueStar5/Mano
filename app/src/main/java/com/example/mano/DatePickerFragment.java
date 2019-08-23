@@ -20,13 +20,12 @@ import java.util.Calendar;
 public class DatePickerFragment extends PickerFragment
         implements DatePickerDialog.OnDateSetListener {
     private DatePickerDialog dialog;
-    private LocalDate date;
+    private LocalDate date = LocalDate.now();
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         toggleHidden();
         if (dialog == null) {
-            date = LocalDate.now();
             dialog = new DatePickerDialog(getActivity(), this, date.getYear(),
                     date.getMonthValue(), date.getDayOfMonth());
         }
