@@ -46,6 +46,16 @@ public class EntryViewModel extends AndroidViewModel {
             }
         }.execute();
     }
+    public void delete(final int id) {
+        new AsyncTask<Void, Void, Void>() {
+
+            @Override
+            protected Void doInBackground(Void... voids) {
+                database.entryDao().delete(id);
+                return null;
+            }
+        }.execute();
+    }
     public LiveData<Entry> get(int id) {
         return database.entryDao().get(id);
     }

@@ -4,8 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.ViewSwitcher;
 
 import java.time.LocalDateTime;
@@ -37,23 +39,25 @@ public class EntryActivity extends AppCompatActivity {
 
                             @Override
                             public void onChanged(Entry entry) {
-                                EntryActivity activity = EntryActivity.this;
-                                String title = entry.getTitle();
-                                String body = entry.getBody();
-                                String date = DateTimeTools.formatDate(activity,
-                                        entry.getDateTime());
-                                String time = DateTimeTools.formatTime(activity,
-                                        entry.getDateTime());
+                                if (entry != null) {
+                                    EntryActivity activity = EntryActivity.this;
+                                    String title = entry.getTitle();
+                                    String body = entry.getBody();
+                                    String date = DateTimeTools.formatDate(activity,
+                                            entry.getDateTime());
+                                    String time = DateTimeTools.formatTime(activity,
+                                            entry.getDateTime());
 
-                                setViewText(R.id.titleTextView, title);
-                                setViewText(R.id.bodyTextView, body);
-                                setViewText(R.id.dateTextView, date);
-                                setViewText(R.id.timeTextView, time);
+                                    setViewText(R.id.titleTextView, title);
+                                    setViewText(R.id.bodyTextView, body);
+                                    setViewText(R.id.dateTextView, date);
+                                    setViewText(R.id.timeTextView, time);
 
-                                setViewText(R.id.titleText, title);
-                                setViewText(R.id.bodyText, body);
-                                setViewText(R.id.dateText, date);
-                                setViewText(R.id.timeText, time);
+                                    setViewText(R.id.titleText, title);
+                                    setViewText(R.id.bodyText, body);
+                                    setViewText(R.id.dateText, date);
+                                    setViewText(R.id.timeText, time);
+                                }
                             }
                         }
         );
@@ -74,5 +78,9 @@ public class EntryActivity extends AppCompatActivity {
        ViewModelProviders.of(this).get(EntryViewModel.class).update(id,
                 getViewText(R.id.titleText), getViewText(R.id.bodyText),
                 LocalDateTime.of(datePicker.getDate(), timePicker.getTime()));
+    }
+    public void onDeleteButtonClick(View view) {
+        ViewModelProviders.of(this).get(EntryViewModel.class).delete(id);
+        startActivity(new Intent(this, CalendarActivity.class));
     }
 }

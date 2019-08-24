@@ -2,6 +2,7 @@ package com.example.mano;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
@@ -23,4 +24,6 @@ public interface EntryDao {
     @Update
     void update(Entry entry);
 
+    @Query("DELETE FROM Entry WHERE rowid=:id")
+    void delete(int id);
 }
