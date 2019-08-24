@@ -45,12 +45,12 @@
         android:id="@+id/createButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         android:onClick="onCreatePress"
         android:text="@string/add_entry_create"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/timeText" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <EditText
         android:id="@+id/timeText"
@@ -105,5 +105,38 @@
         android:text="@string/add_entry_body"
         app:layout_constraintBaseline_toBaselineOf="@+id/bodyText"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/remindersHeadingTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/reminders_heading"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/timeText" />
+
+    <Button
+        android:id="@+id/addReminderButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/add_reminder_button"
+        app:layout_constraintEnd_toEndOf="@+id/remindersListView"
+        app:layout_constraintStart_toStartOf="@+id/remindersListView"
+        app:layout_constraintTop_toBottomOf="@+id/remindersHeadingTextView" />
+
+    <ListView
+        android:id="@+id/remindersListView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/createButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addReminderButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

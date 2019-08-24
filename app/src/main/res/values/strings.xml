@@ -14,4 +14,6 @@
     <string name="default_body">Body</string>
     <string name="save_entry_button">Save</string>
     <string name="delete_entry_button">Delete</string>
+    <string name="reminders_heading">Reminders</string>
+    <string name="add_reminder_button">Add Reminder</string>
 </resources>
