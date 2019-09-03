@@ -1,6 +1,7 @@
 package com.example.mano;
 
 import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.app.Application;
 import android.app.Dialog;
@@ -10,6 +11,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.TimePicker;
 
 import java.time.LocalTime;
@@ -19,6 +21,14 @@ public class TimePickerFragment extends PickerFragment
         implements TimePickerDialog.OnTimeSetListener {
     private TimePickerDialog dialog;
     private LocalTime time = LocalTime.now();
+
+    public TimePickerFragment() {
+
+    }
+
+    public TimePickerFragment(DateTimePicker dateTimePicker) {
+        super(dateTimePicker);
+    }
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -31,9 +41,19 @@ public class TimePickerFragment extends PickerFragment
     }
 
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-        boundTextView.setText(DateTimeTools.formatTime(getContext(), hourOfDay, minute));
         time = LocalTime.of(hourOfDay, minute);
+        updateTextView(view.getContext());
         toggleHidden();
+        dateTimePicker.onDateTimeSet();
+    }
+    public void updateTextView(Context context) {
+        boundTextView.setText(DateTimeTools.formatTime(context, time.getHour(),
+                time.getMinute()));
+    }
+    @Override
+    public void bindTextView(TextView view, FragmentManager fragmentManager, String tag) {
+        super.bindTextView(view, fragmentManager, tag);
+        updateTextView(view.getContext());
     }
     public LocalTime getTime() {
         return time;

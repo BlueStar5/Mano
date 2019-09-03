@@ -121,6 +121,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:onClick="onAddReminderButtonPress"
         android:text="@string/add_reminder_button"
         app:layout_constraintEnd_toEndOf="@+id/remindersListView"
         app:layout_constraintStart_toStartOf="@+id/remindersListView"

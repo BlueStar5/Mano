@@ -14,6 +14,14 @@ public class PickerFragment extends DialogFragment {
 
     private boolean hidden = true;
     protected TextView boundTextView;
+    protected DateTimePicker dateTimePicker;
+
+    public PickerFragment() {
+
+    }
+    public PickerFragment(DateTimePicker dateTimePicker) {
+        this.dateTimePicker = dateTimePicker;
+    }
 
     @Override
     public void onCancel(DialogInterface dialog) {
