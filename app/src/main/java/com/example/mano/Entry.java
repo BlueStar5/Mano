@@ -19,8 +19,8 @@ public class Entry {
 
     private LocalDateTime dateTime;
 
-    private String body;
     private String title;
+    private String body;
 
     public Entry(String title, String body, LocalDateTime dateTime) {
         this.title = title;

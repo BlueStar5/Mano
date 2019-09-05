@@ -52,4 +52,7 @@ public class PickerFragment extends DialogFragment {
             }
         });
     }
+    public TextView getBoundTextView() {
+        return boundTextView;
+    }
 }

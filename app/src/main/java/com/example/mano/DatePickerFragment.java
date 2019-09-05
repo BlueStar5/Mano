@@ -59,5 +59,4 @@ public class DatePickerFragment extends PickerFragment
     public LocalDate getDate() {
         return date;
     }
-
 }

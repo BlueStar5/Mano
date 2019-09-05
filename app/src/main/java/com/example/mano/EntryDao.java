@@ -13,12 +13,12 @@ import java.util.List;
 public interface EntryDao {
 
     @Insert
-    void insert(Entry entry);
+    long insert(Entry entry);
 
     @Query("SELECT *, `rowid` FROM Entry")
     LiveData<List<Entry>> getAll();
 
-    @Query("SELECT *, `rowid` FROM Entry WHERE rowid =:id")
+    @Query("SELECT *, `rowid` FROM Entry WHERE rowid=:id")
     LiveData<Entry> get(int id);
 
     @Update

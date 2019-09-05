@@ -41,4 +41,10 @@ public class DateTimePicker {
     public LocalDateTime getDateTime() {
         return LocalDateTime.of(datePicker.getDate(), timePicker.getTime());
     }
+    public TextView getDateTextView() {
+        return datePicker.getBoundTextView();
+    }
+    public TextView getTimeTextView() {
+        return timePicker.getBoundTextView();
+    }
 }

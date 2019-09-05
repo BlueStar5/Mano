@@ -15,6 +15,7 @@ import android.view.ViewParent;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.TimePicker;
 
 import java.time.LocalDateTime;
@@ -47,6 +48,7 @@ public class AddEntryActivity extends AppCompatActivity {
     public void onAddReminderButtonPress(View view) {
         dateTimePickers.add(new DateTimePicker(this::updateReminderList));
         updateReminderList();
+
     }
     public void updateReminderList() {
         ReminderArrayAdapter adapter = new ReminderArrayAdapter(this,
@@ -54,12 +56,31 @@ public class AddEntryActivity extends AppCompatActivity {
         Log.d("AddEntryActivity", dateTimePickers.get(0).getDateTime().toString());
 
         ((ListView) findViewById(R.id.remindersListView)).setAdapter(adapter);
+
+
     }
     public void onCreatePress(View v) {
-        ViewModelProviders.of(this)
-                .get(EntryViewModel.class).insert(ViewTools.getViewText(this,
-                R.id.entryTitleText), ViewTools.getViewText(this, R.id.bodyText),
-                LocalDateTime.of(datePicker.getDate(), timePicker.getTime()));
+        String entryTitle = ViewTools.getViewText(this, R.id.entryTitleText);
+        String entryBody = ViewTools.getViewText(this, R.id.bodyText);
+
+        EntryViewModel entryViewModel = ViewModelProviders.of(this)
+                .get(EntryViewModel.class);
+
+        entryViewModel.insert(entryTitle, entryBody, LocalDateTime.of(datePicker.getDate(),
+                timePicker.getTime()), new ParamUpdateCallback() {
+            @Override
+            public void onUpdate(Object... objects) {
+                int id = ((Long) objects[0]).intValue();
+                for (DateTimePicker dateTimePicker : dateTimePickers) {
+                    //View reminderView = ((View) dateTimePicker.getDateTextView().getParent());
+                    Log.d(TAG + " for", entryTitle + " " + entryBody + " " + dateTimePicker
+                            .getDateTime().toString() + " " + id);
+                    entryViewModel.insertReminder(entryTitle, entryBody, dateTimePicker.getDateTime(),
+                            id);
+                }
+            }
+        });
+
         startActivity(new Intent(this, CalendarActivity.class));
     }
 }
